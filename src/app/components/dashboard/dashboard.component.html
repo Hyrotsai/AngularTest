@@ -1,0 +1,8 @@
+<h1>Mi nombre es: {{nombre}}</h1>
+<input type="text" [placeholder]="texto">
+<br>
+<button (click)="cambiarTexto()">Click me</button>
+<br>
+<h1>Comunicacion entr componentes</h1>
+<br>
+<app-card [textCard]="texto"></app-card>
