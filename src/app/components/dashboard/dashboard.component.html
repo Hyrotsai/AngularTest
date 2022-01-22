@@ -1,8 +1,52 @@
-<h1>Mi nombre es: {{nombre}}</h1>
-<input type="text" [placeholder]="texto">
-<br>
-<button (click)="cambiarTexto()">Click me</button>
-<br>
-<h1>Comunicacion entr componentes</h1>
-<br>
-<app-card [textCard]="texto"></app-card>
+<div class="container">
+
+    <h1 class="d-flex justify-content-center">Buscador de paises</h1>
+
+    <div class="d-flex flex-row justify-content-center">
+        <div *ngFor="let item of keywords">
+            <input type="radio" name="my-input" id="yes" [value]="item" [(ngModel)]="keyword">
+            <label for="yes">{{item | titlecase}}</label>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-center">
+        <div class="ng-autocomplete">
+            <ng-autocomplete [data]="infoCountry" [searchKeyword]="keyword" [itemTemplate]="itemTemplate"
+                [notFoundTemplate]="notFoundTemplate" placeholder="Enter the name"
+                notFoundText="No se encontraron resultados" (selected)="fillValue()" (inputCleared)="clearValue()"
+                [(ngModel)]="countrySelect">
+            </ng-autocomplete>
+
+            <ng-template #itemTemplate let-item>
+                <a [innerHTML]="item.name"></a>
+            </ng-template>
+
+            <ng-template #notFoundTemplate let-notFound>
+                <div [innerHTML]="notFound"></div>
+            </ng-template>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-center separador-text" *ngIf="!checkCountry">
+        <h2>Seleccione un pais</h2>
+    </div>
+
+    <div class="container separador-country" *ngIf="checkCountry">
+        <div class="row">
+            <div class="col">
+                <h2>Pais: {{countrySelect.name}}</h2>
+                <h2>Area: {{countrySelect.area}} Mts</h2>
+                <h2>Capital: {{countrySelect.capital}}</h2>
+                <h2>Continente: {{countrySelect.region}}</h2>
+                <h2>{{getMoneda()}}</h2>
+                <h2>{{getIdiomas()}}</h2>
+            </div>
+
+            <div class="col">
+                <img src={{countrySelect.flags.png}}>
+                <h2>Zona horaria: {{countrySelect.timezones}}</h2>
+            </div>
+        </div>
+    </div>
+
+</div>

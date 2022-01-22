@@ -1,3 +1,25 @@
-h1 {
-  color: red;
+* {
+  color: white;
+}
+
+.separador-text {
+  margin: 15%;
+}
+
+.separador-country {
+  margin: 5%;
+}
+
+.ng-autocomplete {
+  color: black;
+}
+
+label {
+  font-size: 25px;
+  margin: 0 10px;
+}
+
+input[type="radio"] {
+  width: 1.2em;
+  height: 1.2em;
 }
